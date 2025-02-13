@@ -1,0 +1,19 @@
+/**
+ * ESLint configuration
+ * @see https://eslint.org/docs/user-guide/configuring
+ */
+
+{
+  "extends": [
+    "eslint:recommended" // Start with recommended rules
+  ],
+  "rules": {
+    "comma-dangle": ["error", "always-multiline"], // Enforce trailing commas in multiline
+    // "trailingComma": "es5"  // Remove or move to Prettier config
+
+    // Add or override other ESLint rules as needed
+    "semi": ["error", "always"], // Example: Enforce semicolons
+    "quotes": ["error", "double"], // Example: Enforce double quotes
+    "no-unused-vars": "warn" // Example: Warn about unused variables
+  }
+}
