@@ -10,6 +10,5 @@
     }
   ],
   "routes": [{ "src": "/(.*)", "dest": "/dist/server.js" }],
-  "installCommand": "pnpm install",
   "buildCommand": "pnpm build && prisma generate"
 }
