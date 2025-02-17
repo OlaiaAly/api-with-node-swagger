@@ -19,7 +19,7 @@ This API provides endpoints for managing users, including fetching, updating, an
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/OlaiaAly/api-with-node-swagger.git
    ```
 
 2. Install dependencies:
