@@ -1,6 +1,15 @@
 {
   "version": 2,
-  "builds": [{ "src": "src/server.ts", "use": "@vercel/node" }],
+  "builds": [
+    {
+      "src": "src/server.ts",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["prisma/schema.prisma", "prisma/client"]
+      }
+    }
+  ],
   "routes": [{ "src": "/(.*)", "dest": "/dist/server.js" }],
+  "installCommand": "pnpm install",
   "buildCommand": "pnpm build && prisma generate"
 }
