@@ -1,7 +1,11 @@
 {
   "version": 2,
-  "builds": [{ "src": "src/server.ts", "use": "@vercel/node" }],
+  "builds": [
+    { "src": "src/server.ts", "use": "@vercel/node" }
+  ],
   "build": "npx prisma generate && tsc",
-  "routes": [{ "src": "/(.*)", "dest": "/dist/server.js" }],
+  "routes": [
+    { "src": "/(.*)", "dest": "/dist/server.js" }
+  ],
   "installCommand": "pnpm install"
 }
