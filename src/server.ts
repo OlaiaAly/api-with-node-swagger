@@ -34,27 +34,22 @@ app.register(fastifySwagger, {
   transform: jsonSchemaTransform,
 });
 
-/**
- * @description Serves the main application page (index.html).
- * @route GET /
- * @returns {string} 200 - The main application page.
- * @returns {string} 500 - Error loading page.
- * @tags Static
- * @example response - 200 - The main application page.
- **/
 app.register(fastifyStatic, {
-  root: path.join(__dirname, "./"),
-  prefix: "/",
+  root: path.join(__dirname, "../public"), // Point to the *directory*
+  prefix: "/", // Serve from the root URL
+  // Optionally, add these for better handling of index files:
+  index: "index.html", // Specify the index file name (important!)
+  // This option is important to serve static files correctly, especially with SPA.
+  // It will make sure that if the user requests a path that is not a file, it will serve index.html
+  // This is crucial for SPA to handle the routing on the client side.
+  wildcard: false, // Important for single-page applications (SPAs)
 });
 
-app.get("/", async (req, res) => {
-  try {
-    await res.sendFile("./src/index.html");
-  } catch (err) {
-    console.error("Error sending index.html:", err);
-    res.status(500).send("Error loading page"); // Consider a more user-friendly error response
-  }
-});
+// app.get("/", (req, res) => {
+//   //D:\Projectos\others\api\public\index.html
+//   console.log(path.join(__dirname, "../public/index.html"));
+//   res.status(200).send("HEllo word");
+// });
 
 app.register(fastifySwaggerUi, { routePrefix: "/docs" });
 
