@@ -2,7 +2,7 @@
   "name": "api",
   "version": "1.0.0",
   "description": "API, Using Fastify, Prisma, and Zod for validation and TypeScript for type safety and Swagger for API documentation",
-  "main": "index.js",
+  "main": "./dist/server.js",
   "scripts": {
     "dev": "tsx watch ./src/server.ts",
     "postinstall": "pnpm prisma generate",
