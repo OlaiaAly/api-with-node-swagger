@@ -1,9 +1,6 @@
 import z from "zod";
-import { FastfifyTypedInstance } from "../types";
+import { FastifyInstance } from "fastify";
 import { PrismaClient } from "@prisma/client";
-
-import { randomUUID } from "crypto";
-import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
@@ -23,7 +20,7 @@ interface User {
  *
  * @param app - The Fastify application instance.
  */
-export default function routes(app: FastfifyTypedInstance): void {
+export default function routes(app: FastifyInstance): void {
   /**
    * Route handler for fetching users.
    *
