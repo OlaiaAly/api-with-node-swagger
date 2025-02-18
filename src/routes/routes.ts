@@ -21,6 +21,11 @@ interface User {
  * @param app - The Fastify application instance.
  */
 export default function routes(app: FastifyInstance): void {
+  //ROUTE FOR TEST
+  app.get("/test", async (req, reply) => {
+    reply.send("Hello World");
+  });
+
   /**
    * Route handler for fetching users.
    *
