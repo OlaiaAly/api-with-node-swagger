@@ -29,9 +29,8 @@ app.register(fastifySwagger, {
       description: "My awesome API",
     },
   },
-  routePrefix: "/docs",
-  exposeRoute: true,
   transform: jsonSchemaTransform,
+  exposeHeadRoutes: true,
 });
 
 app.register(fastifyStatic, {
@@ -56,10 +55,6 @@ app.register(fastifySwaggerUi, {
   uiConfig: {
     docExpansion: "full",
     deepLinking: false,
-  },
-  static: {
-    //url: '/static', //this is optional
-    prefix: "/docs",
   },
 });
 
