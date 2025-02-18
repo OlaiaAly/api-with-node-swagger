@@ -43,9 +43,14 @@ app.register(fastifySwagger, {
 app.register(fastifySwaggerUi, {
   routePrefix: "/docs",
   uiConfig: {
-    docExpansion: "full",
-    deepLinking: false,
+    docExpansion: 'full',
   },
+  uiHooks: {
+    onRequest: function (_, __, next) { next(); },
+    preHandler: function (_, __, next) { next(); }
+  },
+  staticCSP: true,
+  transformStaticCSP: (header) => header
 });
 
 app.register(routes);
