@@ -10,6 +10,7 @@ import { fastifySwagger } from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 import routes from "./routes/routes";
 import path from "path";
+import fastifyStatic from "@fastify/static";
 // import fastifyStatic from "@fastify/static";
 
 const app = fastify({ logger: true }).withTypeProvider<ZodTypeProvider>();
@@ -33,12 +34,12 @@ app.register(fastifySwagger, {
   exposeHeadRoutes: true,
 });
 
-// app.register(fastifyStatic, {
-//   root: path.join(__dirname, "../public"), // Point to the *directory*
-//   prefix: "/", // Serve from the root URL
-//   index: "index.html", // Specify the index file name (important!)
-//   wildcard: false, // Important for single-page applications (SPAs)
-// });
+app.register(fastifyStatic, {
+  root: path.join(__dirname, "../public"), // Point to the *directory*
+  prefix: "/", // Serve from the root URL
+  index: "index.html", // Specify the index file name (important!)
+  wildcard: false, // Important for single-page applications (SPAs)
+});
 
 app.register(fastifySwaggerUi, {
   routePrefix: "/docs",
