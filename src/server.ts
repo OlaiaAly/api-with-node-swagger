@@ -31,7 +31,7 @@ app.register(fastifySwagger, {
     },
   },
   transform: jsonSchemaTransform,
-  exposeHeadRoutes: true,
+  // exposeHeadRoutes: true,
 });
 
 app.register(fastifyStatic, {

@@ -34,7 +34,6 @@ model User {
   name      String
   password  String
   telephone String @unique
-
   Post Post[]
 }
 

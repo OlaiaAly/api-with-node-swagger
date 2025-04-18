@@ -26,6 +26,58 @@ export default function routes(app: FastifyInstance): void {
     reply.send("Hello World");
   });
 
+
+
+  app.post(
+    "/users",
+    {
+      schema: {
+        tags: ["users"],
+        body: z.object({
+          name: z.string(),
+          password: z.string(),
+          email: z.string().email(),
+          telephone: z.string().max(9),
+        }),
+        description: "Creates a new user",
+        response: {
+          201: z.object({
+            id: z.string(),
+            name: z.string(),
+            email: z.string(),
+            telephone: z.string(),
+          }),
+          500: z.object({
+            error: z.string(),
+          }),
+        },
+      },
+    },
+    async (req, reply) => {
+      const { name, email, telephone, password } = req.body as {
+        name: string;
+        email: string;
+        telephone: string;
+        password: string;
+      };
+      try {
+        const newUser = await prisma.user.create({
+          data: { name, email, telephone, password },
+        });
+
+        if (newUser) {
+          const { password: _, ...rest } = newUser; // Exclude password from response
+          return reply.code(201).send(rest); // Return the remaining properties
+        } else {
+          return reply.code(500).send({ error: "Failed to create user" });
+        }
+      } catch (error) {
+        console.error("Error creating new user:", error);
+        reply.code(500).send({ error: "Internal Server Error" });
+      }
+    }
+  );
+
   /**
    * Route handler for fetching users.
    *
@@ -203,9 +255,9 @@ export default function routes(app: FastifyInstance): void {
 
         if (updatedUser) {
           const { password, ...rest } = updatedUser; // Destructure and exclude password
-          return rest; // Return the remaining properties
+          return reply.code(200).send(); // Return the remaining properties
         } else {
-          return updatedUser;
+          return reply.code(500).send(updatedUser);
         }
       } catch (error) {
         console.error("Error getting user:", error);
