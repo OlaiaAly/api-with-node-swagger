@@ -1,3 +1,4 @@
+//app/routes/routes.ts
 import z from "zod";
 import { FastifyInstance } from "fastify";
 import { PrismaClient } from "@prisma/client";

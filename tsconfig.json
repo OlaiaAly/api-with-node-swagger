@@ -15,7 +15,7 @@
   },
   "include": [
     "src/**/*.ts" // Include your TypeScript files
-  ],
+, "api/index.ts"  ],
   "exclude": [
     "node_modules" // Exclude node modules
   ]

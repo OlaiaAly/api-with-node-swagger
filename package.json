@@ -7,7 +7,7 @@
     "dev": "tsx watch ./src/index.ts",
     "postinstall": "pnpm prisma generate",
     "build": "pnpm prisma generate && tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/api/index.js"
   },
   "keywords": [],
   "author": "Aly Olaia",
@@ -24,6 +24,7 @@
     "i": "^0.3.7",
     "zod": "^3.24.1"
   },
+  "include": ["src", "api"],  
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/fastify-cors": "^2.1.2",
