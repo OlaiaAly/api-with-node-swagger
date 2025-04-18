@@ -37,7 +37,7 @@ app.register(fastifySwagger, {
 
 app.register(fastifyStatic, {
   root: path.join(__dirname, "../public"), // Point to the *directory*
-  prefix: "/", // Serve from the root URL
+  prefix: "/info", // Serve from the root URL
   index: "index.html", // Specify the index file name (important!)
   wildcard: false, // Important for single-page applications (SPAs)
 });
@@ -57,8 +57,13 @@ app.register(fastifySwaggerUi, {
 
 app.register(routes);
 
-// app.listen({ port: PORT }, () => {
-//   console.log(`Server running on http://localhost:${PORT}`);
-// });
+app.get("/", async (request, reply) => {
+  return reply.redirect("/docs");
+});
+
+//HEALTH CHECK
+app.get("/ping", async () => {
+  return { message: "pong" };
+});
 
 export default app;
