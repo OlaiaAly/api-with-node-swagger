@@ -60,10 +60,4 @@ app.register(routes);
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
 
-app.listen({ port: PORT, host: "0.0.0.0" }, (err, address) => {
-  if (err) {
-    console.error(err);
-    process.exit(1);
-  }
-  console.log(`Server running on ${address}`);
-});
+export default app;
